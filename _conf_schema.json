@@ -1,0 +1,138 @@
+{
+  "enabled_sources": {
+    "description": "默认启用的信源",
+    "type": "list",
+    "default": [
+      "openai",
+      "google_ai",
+      "hf_blog",
+      "hf_papers",
+      "qbitai",
+      "techcrunch",
+      "hn",
+      "github_trend"
+    ],
+    "hint": "可选值见下方「可用信源」列表。新会话默认启用这些源，群内可用 /日报源 开启或关闭单个源。全部关闭会导致无内容可写。",
+    "options": [
+      "openai",
+      "google_ai",
+      "hf_blog",
+      "deepmind",
+      "hf_papers",
+      "arxiv_ai",
+      "google_research",
+      "hn",
+      "reddit_llm",
+      "github_trend",
+      "qbitai",
+      "infoq",
+      "techcrunch",
+      "nvidia"
+    ]
+  },
+  "push_time": {
+    "description": "默认每日推送时间",
+    "type": "string",
+    "default": "09:00",
+    "hint": "格式 HH:MM，24 小时制。群内可用 /日报时间 08:30 单独修改。"
+  },
+  "lookback_hours": {
+    "description": "内容时间窗口（小时）",
+    "type": "int",
+    "default": 36,
+    "hint": "只收录最近这么多小时内发布的条目。太小会漏内容，太大会混入旧闻。建议 24-48。"
+  },
+  "per_source_n": {
+    "description": "每个信源抓取条数",
+    "type": "int",
+    "default": 12,
+    "hint": "1-40。单源抓太多会拖慢速度并稀释重点。"
+  },
+  "max_candidates": {
+    "description": "送给模型的最大候选条数",
+    "type": "int",
+    "default": 60,
+    "hint": "10-150。按发布时间排序后截断。条数越多越贵、越慢，60 左右性价比最好。"
+  },
+  "must_see_n": {
+    "description": "「今日必看」条数",
+    "type": "int",
+    "default": 3,
+    "hint": "1-6。日报里重点展开的条数。"
+  },
+  "brief_n": {
+    "description": "「其他速览」条数",
+    "type": "int",
+    "default": 6,
+    "hint": "0-12。一行一条的简要列表，填 0 则不输出该板块。"
+  },
+  "style": {
+    "description": "综述风格",
+    "type": "string",
+    "default": "brief",
+    "hint": "brief = 简洁简报（默认）；deep = 深度解读（每条多写两句分析）；humor = 轻松吐槽风。",
+    "options": [
+      "brief",
+      "deep",
+      "humor"
+    ]
+  },
+  "llm_provider_id": {
+    "description": "指定模型商（可选）",
+    "type": "string",
+    "default": "",
+    "hint": "留空则使用会话当前模型。填模型商 ID 可让日报固定走某个模型（例如便宜的小模型）。"
+  },
+  "render_image": {
+    "description": "渲染成图片卡片",
+    "type": "bool",
+    "default": true,
+    "hint": "开启=发图片卡片，观感更好、长文不易被吞；但图片里的链接不可点击。关闭=发纯文本，链接可直接点开（新闻日报更推荐）。渲染失败时自动回退纯文本。"
+  },
+  "theme": {
+    "description": "卡片配色主题",
+    "type": "string",
+    "default": "dark",
+    "hint": "dark = 深色（默认），light = 浅色。",
+    "options": [
+      "dark",
+      "light"
+    ]
+  },
+  "quiet_hours": {
+    "description": "静默时段（不打扰）",
+    "type": "string",
+    "default": "",
+    "hint": "格式如 23:00-07:00，静默时段内不自动推送。留空表示不启用。支持跨零点。"
+  },
+  "quiet_catchup": {
+    "description": "静默时段结束后补发",
+    "type": "bool",
+    "default": true,
+    "hint": "若推送时间落在静默时段内，出静默时段后立即补发一份。"
+  },
+  "fetch_timeout": {
+    "description": "单源抓取超时（秒）",
+    "type": "int",
+    "default": 15,
+    "hint": "5-60。某个源超时不会影响其他源，只是该源本次无内容。"
+  },
+  "retry_times": {
+    "description": "抓取失败重试次数",
+    "type": "int",
+    "default": 2,
+    "hint": "0-5。单个信源请求失败后的重试次数，网络抖动时可提高成功率。"
+  },
+  "max_retry_llm": {
+    "description": "模型调用失败重试次数",
+    "type": "int",
+    "default": 1,
+    "hint": "0-3。日报生成失败时会重试；多次失败则回退为「条目列表」纯文本，不会什么都不发。"
+  },
+  "max_subs": {
+    "description": "最大订阅会话数",
+    "type": "int",
+    "default": 50,
+    "hint": "防止被大量会话订阅后造成压力，超过后新订阅会被拒绝。"
+  }
+}

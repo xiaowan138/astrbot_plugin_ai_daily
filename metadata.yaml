@@ -1,0 +1,51 @@
+name: astrbot_plugin_ai_daily # 插件唯一识别名
+display_name: AI 日报 · 多源综述 # 用于展示的名字
+logo: logo.png # 插件市场展示的封面图
+short_desc: 聚合 14 个 AI 信源，让模型写一份独家日报，支持定时推送与追问。
+desc: |
+  AI 日报（多源综述）—— 不做资讯的搬运工，自己采信源、自己写日报。
+
+  和市面上「订阅别人的 AI 日报再转发」的插件不同，本插件直接从 14 个一手信源
+  采集当天的新鲜内容，交给大模型通读后**从零撰写**一份中文日报：
+  合并同一事件的多方报道、判断重要性、给出有观点的点评。
+
+  信源（零 Key 开箱即用）：
+  - 官方发布：OpenAI / Google AI / HuggingFace Blog / DeepMind
+  - 论文研究：HuggingFace 每日论文 / arXiv cs.AI / Google Research
+  - 技术社区：Hacker News / r/LocalLLaMA / GitHub Trending
+  - 中文媒体：量子位 / InfoQ
+  - 英文媒体：TechCrunch AI / NVIDIA Blog
+
+  功能：
+  - 定时推送：每天到点自动生成并推送到群 / 私聊
+  - 手动获取：/日报 随时生成一份
+  - 追问：/日报追问 某条新闻是什么 —— 带着当天所有素材回答你
+  - 信源自选：按群开关信源、调条数、调时间窗口
+  - 综述风格：简报 / 深度 / 幽默三档
+  - 图片卡片（可选）或纯文本推送，渲染失败自动回退文本
+  - 静默时段、失败重试、重启不丢配置
+
+  用法示例：
+  - /日报                     立即生成并推送今日 AI 日报
+  - /日报订阅                 本会话开启每天自动推送
+  - /日报时间 08:30           设置推送时间（管理员）
+  - /日报源                   查看/开关信源
+  - /日报追问 Sora 是什么     就日报里的内容继续追问
+  - /日报状态 /日报帮助       查看状态与完整说明
+
+version: v1.0.0 # 插件版本号。格式：v1.1.1 或 v1.1
+author: xiaowan138 # 作者
+repo: https://github.com/xiaowan138/astrbot_plugin_ai_daily.git # 插件仓库地址
+astrbot_version: ">=4.5.7" # 需要 llm_generate / send_message 等 API
+tags:
+  - AI
+  - 资讯
+  - 日报
+  - 订阅
+  - 推送
+support_platforms:
+  - aiocqhttp
+  - qq_official
+  - telegram
+  - discord
+  - lark
